@@ -27,8 +27,8 @@ namespace Battleships
             for (int Count = 0; Count < _Size; Count++)
             {
                 //Adding active X and Y coordinate variables for creating the shipes
-                int ActiveX;
-                int ActiveY;
+                int ActiveX = 0;
+                int ActiveY = 0;
                 //A switch statement to determine which way the ship will be facing from its starting point
                 
                 switch (Orientation)
@@ -45,8 +45,8 @@ namespace Battleships
                     case 'W': //Left
                         ActiveX = StartingPoint.PositionX - Count;
                         break;
-                    _ShipCoordinates[Count] = new Coordinate(ActiveX, ActiveY);
                 }
+                _ShipCoordinates[Count] = new Coordinate(ActiveX, ActiveY);
             }
         }
 
