@@ -16,11 +16,11 @@ namespace Battleships
         public int PositionY { get => _PositionY; set => _PositionY = value; }
         public bool Hit { get => _Hit; set => _Hit = value; }
 
-        public Coordinate(int positionX, int positionY, bool hit)
+        public Coordinate(int positionX, int positionY)
         {
             _PositionX = positionX;
             _PositionY = positionY;
-            _Hit = hit;
+            _Hit = false;
         }
 
         public void CheckIfHit(int TargetPositionX, int TargetPositionY)
