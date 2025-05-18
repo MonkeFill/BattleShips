@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +18,11 @@ namespace Battleships
         public bool Sunk { get => _Sunk; set => _Sunk = value; }
         public Coordinate[] ShipCoordinates { get => _ShipCoordinates; set => _ShipCoordinates = value; }
 
-        public Ship(string Name, int Size, bool Sunk, char Orientation, Coordinate StartingPoint)
+        public Ship(string Name, int Size, char Orientation, Coordinate StartingPoint)
         {
             _Name = Name;
             _Size = Size;
-            _Sunk = hit
+            _Sunk = false;
             //Loop for each coordinate the ship will have
             for (int Count = 0; Count < _Size; Count++)
             {
@@ -34,16 +34,16 @@ namespace Battleships
                 switch (Orientation)
                 {
                     case 'N': // Up
-                        ActiveY = StartingPoint.Y + Count;
+                        ActiveY = StartingPoint.PositionY + Count;
                         break;
                     case 'S': // Down
-                        ActiveY = StartingPoint.Y - Count;
+                        ActiveY = StartingPoint.PositionY - Count;
                         break;
                     case 'E': // Right
-                        ActiveX = StartingPoint.X + Count;
+                        ActiveX = StartingPoint.PositionX + Count;
                         break;
                     case 'W': //Left
-                        ActiveX = StartingPoint.X - Count;
+                        ActiveX = StartingPoint.PositionX - Count;
                         break;
                     _ShipCoordinates[Count] = new Coordinate(ActiveX, ActiveY);
                 }
@@ -52,14 +52,9 @@ namespace Battleships
 
         public void CheckIfSunk()
         {
-            bool ShipSunk = true;
-            for (int Count = 0; Count < _Size && ShipSunk != true; Count++)
+            for (int Count = 0; Count < _Size && _Sunk != false; Count++)
             {
-                ShipSunk = ShipCoordinates[Count].Hit;
-            }
-            if (ShipSunk == true)
-            {
-                _Sunk = true;
+                _Sunk = ShipCoordinates[Count].Hit;
             }
         }
     }
